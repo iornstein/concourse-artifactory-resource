@@ -26,6 +26,8 @@ fi
 explode=$(jq -r '.params.explode // "false"' < $request_payload)
 
 pattern=$(echo $regexp | sed -e 's/(.*)/*/')
+echo 'I AM A TEACUP'
+echo "jfrog rt dl $path/$pattern --props=\"version=$version\" --recursive=false --flat=true $jfrog_args"
 results=$(jfrog rt dl $path/$pattern --props="version=$version" --recursive=false --flat=true $jfrog_args)
 
 if ! echo "$results" | grep -q "Downloaded 1 artifact"; then
